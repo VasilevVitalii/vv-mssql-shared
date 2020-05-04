@@ -1,0 +1,29 @@
+{
+  "name": "vv-mssql-shared",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "doc": "type .readme.md > readme.md && jsdoc2md index.js >> readme.md",
+    "updatever": "npm version patch --no-git-tag-version",
+    "gitadd": "git add ./readme.md ./package.json ./package-lock.json"
+  },
+  "pre-commit": "doc, updatever, gitadd",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VasilevVitalii/vv-mssql-shared.git"
+  },
+  "author": "Vitalii Vasilev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VasilevVitalii/vv-mssql-shared/issues"
+  },
+  "homepage": "https://github.com/VasilevVitalii/vv-mssql-shared#readme",
+  "devDependencies": {
+    "jsdoc-to-markdown": "^5.0.3",
+    "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
+    "vv-shared": "^2.0.23"
+  }
+}

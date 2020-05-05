@@ -11,7 +11,7 @@ exports.go = go
  * @param {Object} object
  * @returns {index.type_column}
  */
-function go (object, check_errors) {
+function go (object) {
     if (vvs.isEmpty(object)) {
         throw new Error ("can't convert object to sql type column - object is empty")
     }

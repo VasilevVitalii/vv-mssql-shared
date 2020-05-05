@@ -14,6 +14,11 @@ exports.go = go
 function go (object) {
     if (vvs.isEmpty(object)) return undefined
 
+    let name = vvs.toString(vvs.findPropertyValueInObject(object, 'name'))
+    if (!vvs.isEmpty(name)) {
+        name = name.trim()
+    }
+
     let type = get_types_sql().find(f => vvs.equal(f.type, vvs.toString(vvs.findPropertyValueInObject(object, 'type'), '')))
 
     let len_chars = vvs.findPropertyValueInObject(object, 'len_chars')
@@ -23,8 +28,13 @@ function go (object) {
         len_chars = vvs.toInt(len_chars)
     }
 
+    let description = vvs.toString(vvs.findPropertyValueInObject(object, 'description'))
+    if (!vvs.isEmpty(description)) {
+        description = description.trim()
+    }
+
     return {
-        name: vvs.toString(vvs.findPropertyValueInObject(object, 'name')),
+        name: name,
         type: vvs.isEmpty(type) ? undefined : type.type,
         len_chars: len_chars,
         precision: vvs.toInt(vvs.findPropertyValueInObject(object, 'precision')),
@@ -32,7 +42,7 @@ function go (object) {
         nullable: vvs.toBool(vvs.findPropertyValueInObject(object, 'nullable'), true),
         identity: vvs.toBool(vvs.findPropertyValueInObject(object, 'identity'), false),
         pk_position: vvs.toInt(vvs.findPropertyValueInObject(object, 'pk_position')),
-        description: vvs.toString(vvs.findPropertyValueInObject(object, 'description'))
+        description: description
     }
 
 }

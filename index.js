@@ -34,6 +34,7 @@
 exports.helper_get_types_sql = require('./helper_function/get_types_sql.js').go
 exports.helper_get_declare = require('./helper_function/get_declare.js').go
 exports.helper_js_to_sql = require('./helper_function/js_to_sql.js').go
+exports.helper_from_object_to_type_column = require('./helper_function/from_object_to_type_column.js').go
 
 exports.depot_lock_sp_getapplock = require('./depot_script/lock_sp_getapplock.js').go
 exports.depot_lock_sp_releaseapplock = require('./depot_script/lock_sp_releaseapplock.js').go

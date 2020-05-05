@@ -66,7 +66,7 @@ function go (object) {
 
     return {
         name: name,
-        type: vvs.isEmpty(type) ? undefined : type.type,
+        type: type.type,
         len_chars: len_chars,
         precision: precision,
         scale: scale,

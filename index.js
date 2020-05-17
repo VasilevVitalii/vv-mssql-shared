@@ -33,6 +33,7 @@
 
 exports.helper_get_types_sql = require('./helper_function/get_types_sql.js').go
 exports.helper_get_declare = require('./helper_function/get_declare.js').go
+exports.helper_format_declare = require('./helper_function/format_declare.js').go
 exports.helper_js_to_sql = require('./helper_function/js_to_sql.js').go
 exports.helper_from_object_to_type_column = require('./helper_function/from_object_to_type_column.js').go
 

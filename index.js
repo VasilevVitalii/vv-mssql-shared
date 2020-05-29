@@ -37,10 +37,11 @@ exports.helper_format_declare = require('./helper_function/format_declare.js').g
 exports.helper_js_to_sql = require('./helper_function/js_to_sql.js').go
 exports.helper_from_object_to_type_column = require('./helper_function/from_object_to_type_column.js').go
 
+exports.depot_server_info = require('./depot_script/server_info.js').go
 exports.depot_lock_sp_getapplock = require('./depot_script/lock_sp_getapplock.js').go
 exports.depot_lock_sp_releaseapplock = require('./depot_script/lock_sp_releaseapplock.js').go
 exports.depot_sch_description = require('./depot_script/sch_description.js').go
 exports.depot_sch_foreign = require('./depot_script/sch_foreign.js').go
 exports.depot_sch_schema = require('./depot_script/sch_schema.js').go
 exports.depot_sch_table = require('./depot_script/sch_table.js').go
-exports.depot_server_info = require('./depot_script/server_info.js').go
+exports.depot_sch_get_columns = require('./depot_script/sch_get_columns.js').go

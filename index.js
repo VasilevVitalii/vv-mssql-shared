@@ -36,6 +36,7 @@ exports.helper_get_declare = require('./helper_function/get_declare.js').go
 exports.helper_format_declare = require('./helper_function/format_declare.js').go
 exports.helper_js_to_sql = require('./helper_function/js_to_sql.js').go
 exports.helper_from_object_to_type_column = require('./helper_function/from_object_to_type_column.js').go
+exports.helper_parse_object_name = require('./helper_function/parse_object_name.js').go
 
 exports.depot_server_info = require('./depot_script/server_info.js').go
 exports.depot_lock_sp_getapplock = require('./depot_script/lock_sp_getapplock.js').go

@@ -7,7 +7,7 @@ exports.go = go
 
 /**
  * @typedef table
- * @property {string} database database name or empty string - current database
+ * @property {string} base database name or empty string - current database
  * @property {string} schema schema name or empty string - dba
  * @property {string} table table name
  */
@@ -19,7 +19,7 @@ exports.go = go
  */
 function go (tables) {
     let tables_beauty = tables.map(m => { return {
-        database: vvs.border_del(vvs.toString(m.database, '').trim(), '[', ']'),
+        base: vvs.border_del(vvs.toString(m.base, '').trim(), '[', ']'),
         schema: vvs.border_del(vvs.toString(m.schema, '').trim(), '[', ']'),
         table: vvs.border_del(vvs.toString(m.table, '').trim(), '[', ']')
     }})
@@ -27,8 +27,8 @@ function go (tables) {
     /** @type {string[]} */
     let databases = []
     tables_beauty.forEach(table => {
-        if (databases.some(f => vvs.equal(f, table.database))) return
-        databases.push(table.database)
+        if (databases.some(f => vvs.equal(f, table.base))) return
+        databases.push(table.base)
     })
 
     /** @type {string[]} */
@@ -39,7 +39,7 @@ function go (tables) {
             [
                 vvs.isEmptyString(database) ? '' : "USE ".concat(vvs.border_add(database, "[", "]")),
                 ";with need_tables AS (",
-                tables_beauty.filter(f => vvs.equal(f.database, database)) .map(m => {
+                tables_beauty.filter(f => vvs.equal(f.base, database)) .map(m => {
                     return vvs.format("    SELECT '{0}' [schema], '{1}' [table]", [vvs.isEmptyString(m.schema) ? 'dbo' : m.schema, m.table])
                 }).join(" UNION ALL".concat(os.EOL)),
                 ")",

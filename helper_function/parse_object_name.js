@@ -6,16 +6,9 @@ const index = require('../index.js')
 exports.go = go
 
 /**
- * @typedef object_name
- * @property {string} base
- * @property {string} schema
- * @property {string} table
- */
-
-/**
  * @param {string} object_name
  * @param {string} [default_base]
- * @returns {object_name}
+ * @returns {index.type_sql_object_name}
  */
 function go (object_name, default_base) {
     if (vvs.isEmptyString(object_name)) return undefined

@@ -7,8 +7,8 @@ exports.go = go
 
 /**
  * @typedef table
- * @property {string} base database name or empty string - current database
- * @property {string} schema schema name or empty string - dba
+ * @property {string} [base] database name or empty string - current database
+ * @property {string} [schema] schema name or empty string - dba
  * @property {string} table table name
  */
 
@@ -19,14 +19,21 @@ exports.go = go
  */
 function go (tables) {
     let tables_beauty = tables.map(m => { return {
-        base: vvs.border_del(vvs.toString(m.base, '').trim(), '[', ']'),
-        schema: vvs.border_del(vvs.toString(m.schema, '').trim(), '[', ']'),
-        table: vvs.border_del(vvs.toString(m.table, '').trim(), '[', ']')
+        base: vvs.border_del(vvs.toString(m.base, '').trim(), '[', ']').toLowerCase(),
+        schema: vvs.border_del(vvs.toString(m.schema, '').trim(), '[', ']').toLowerCase(),
+        table: vvs.border_del(vvs.toString(m.table, '').trim(), '[', ']').toLowerCase()
     }})
+
+    /** @type {table[]} */
+    let tables_beauty_one = []
+    tables_beauty.forEach(table => {
+        if (tables_beauty_one.some(f => vvs.equal(f.base, table.base) && vvs.equal(f.schema, table.schema) && vvs.equal(f.table, table.table))) return
+        tables_beauty_one.push(table)
+    })
 
     /** @type {string[]} */
     let databases = []
-    tables_beauty.forEach(table => {
+    tables_beauty_one.forEach(table => {
         if (databases.some(f => vvs.equal(f, table.base))) return
         databases.push(table.base)
     })
@@ -39,7 +46,7 @@ function go (tables) {
             [
                 vvs.isEmptyString(database) ? '' : "USE ".concat(vvs.border_add(database, "[", "]")),
                 ";with need_tables AS (",
-                tables_beauty.filter(f => vvs.equal(f.base, database)) .map(m => {
+                tables_beauty_one.filter(f => vvs.equal(f.base, database)) .map(m => {
                     return vvs.format("    SELECT '{0}' [schema], '{1}' [table]", [vvs.isEmptyString(m.schema) ? 'dbo' : m.schema, m.table])
                 }).join(" UNION ALL".concat(os.EOL)),
                 ")",

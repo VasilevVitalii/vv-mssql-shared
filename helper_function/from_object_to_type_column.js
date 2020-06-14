@@ -27,7 +27,7 @@ function go (object) {
     }
 
     let len_chars = vvs.findPropertyValueInObject(object, 'len_chars')
-    if (vvs.equal(len_chars, 'max')) {
+    if (vvs.equal(len_chars, 'max') || len_chars === -1) {
         len_chars = 'max'
     } else {
         len_chars = vvs.toInt(len_chars)

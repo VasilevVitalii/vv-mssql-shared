@@ -50,7 +50,9 @@ function go (tables) {
                     return vvs.format("    SELECT '{0}' [schema], '{1}' [table]", [vvs.isEmptyString(m.schema) ? 'dbo' : m.schema, m.table])
                 }).join(" UNION ALL".concat(os.EOL)),
                 ")",
-                "SELECT '" + quote(database, true) + "' [DATABASE], c.TABLE_SCHEMA, c.TABLE_NAME, c.COLUMN_NAME, c.IS_NULLABLE, c.DATA_TYPE, c.CHARACTER_MAXIMUM_LENGTH, c.NUMERIC_PRECISION, c.NUMERIC_SCALE, prop_column.[value] COLUMN_DESCRIPTION, prop_table.[value] TABLE_DESCRIPTION, pk.ORDINAL_POSITION PRIMARY_ORDINAL_POSITION",
+                "SELECT '" + quote(database, true) + "' [DATABASE], c.TABLE_SCHEMA [SCHEMA], c.TABLE_NAME [TABLE], prop_table.[value] TABLE_DESCRIPTION,",
+                "c.COLUMN_NAME [NAME], prop_column.[value] DESCRIPTION, pk.ORDINAL_POSITION PK_POSITION, c.IS_NULLABLE [NULLABLE],",
+                "c.DATA_TYPE [TYPE], c.CHARACTER_MAXIMUM_LENGTH [LEN_CHARS], c.NUMERIC_PRECISION [PRECISION], c.NUMERIC_SCALE [SCALE]",
                 "FROM INFORMATION_SCHEMA.[COLUMNS] c",
                 "JOIN need_tables n ON n.[schema] = c.TABLE_SCHEMA AND n.[table] = c.TABLE_NAME",
                 "OUTER APPLY fn_listextendedproperty(default, 'SCHEMA', c.TABLE_SCHEMA, 'TABLE', c.TABLE_NAME, null, null) prop_table",

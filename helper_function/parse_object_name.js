@@ -14,9 +14,10 @@ exports.go = go
 
 /**
  * @param {string} object_name
+ * @param {string} [default_base]
  * @returns {object_name}
  */
-function go (object_name) {
+function go (object_name, default_base) {
     if (vvs.isEmptyString(object_name)) return undefined
     let part = object_name.split('.')
     if (part.length <= 0) return undefined
@@ -24,19 +25,20 @@ function go (object_name) {
     switch(part.length) {
         case 1:
             return {
-                base: '',
+                base: vvs.toString(default_base, '').trim() ,
                 schema: 'dbo',
                 table: vvs.isEmptyString(part[0]) ? '' : vvs.border_del(part[0].trim(), '[', ']')
             }
         case 2:
             return {
-                base: '',
+                base: vvs.toString(default_base, '').trim(),
                 schema: schema(part[0]),
                 table: vvs.isEmptyString(part[1]) ? '' : vvs.border_del(part[1].trim(), '[', ']')
             }
         case 3:
+            let base = vvs.isEmptyString(part[0]) ? '' : vvs.border_del(part[0].trim(), '[', ']')
             return {
-                base: vvs.isEmptyString(part[0]) ? '' : vvs.border_del(part[0].trim(), '[', ']'),
+                base: vvs.isEmptyString(base) ? vvs.toString(default_base, '').trim() : base,
                 schema: schema(part[1]),
                 table: vvs.isEmptyString(part[2]) ? '' : vvs.border_del(part[2].trim(), '[', ']')
             }

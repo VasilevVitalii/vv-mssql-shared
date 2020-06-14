@@ -25,7 +25,7 @@ function go (object_name) {
         case 1:
             return {
                 base: '',
-                schema: 'dba',
+                schema: 'dbo',
                 table: vvs.isEmptyString(part[0]) ? '' : vvs.border_del(part[0].trim(), '[', ']')
             }
         case 2:

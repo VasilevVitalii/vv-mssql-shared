@@ -8,7 +8,7 @@ exports.go = go
 /**
  * @typedef table
  * @property {string} [base] database name or empty string - current database
- * @property {string} [schema] schema name or empty string - dba
+ * @property {string} [schema] schema name or empty string - dbo
  * @property {string} table table name
  */
 

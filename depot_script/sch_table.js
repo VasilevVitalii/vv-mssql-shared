@@ -11,7 +11,7 @@ exports.go = go
  * create table or update table columns
  * @param {string} schema
  * @param {string} name
- * @param {string} [description]
+ * @param {string} description
  * @param {index.type_column[]} column_list
  * @param {'ignore'|'error'} exist_unknown_field
  * @returns {string}

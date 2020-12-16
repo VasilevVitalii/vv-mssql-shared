@@ -2,13 +2,14 @@
 
 const vvs = require('vv-shared')
 const index = require('../index.js')
+const s = require('../shared.js')
 
 exports.go = go
 
 /**
  * @param {string} object_name
  * @param {string} [default_base]
- * @returns {index.type_sql_object_name}
+ * @returns {s.type_sql_object_name}
  */
 function go (object_name, default_base) {
     if (vvs.isEmptyString(object_name)) return undefined

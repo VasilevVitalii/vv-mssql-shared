@@ -31,13 +31,6 @@
  * @property {sqltype} type
  */
 
-/**
- * @typedef type_sql_object_name
- * @property {string} base
- * @property {string} schema
- * @property {string} table
- */
-
 exports.helper_get_types_sql = require('./helper_function/get_types_sql.js').go
 exports.helper_get_declare = require('./helper_function/get_declare.js').go
 exports.helper_format_declare = require('./helper_function/format_declare.js').go

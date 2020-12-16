@@ -12,10 +12,10 @@ exports.go = go
  * @returns {string}
  */
 function go (filter, allow_size) {
-    let beauty_filter = s.beautify_filter({bases: filter})
+    let beauty_filter = s.beautify_filter(filter.map(m => { return {base: m} }), '', '')
 
-    let dabatase_filter = beauty_filter.bases.length > 0
-        ? vvs.format("    IF ''?'' NOT IN (''{0}'') RETURN", beauty_filter.bases.map(m => { return vvs.replaceAll(m, "'", "''''") } ).join("'',''") )
+    let dabatase_filter = beauty_filter.length > 0
+        ? vvs.format("    IF ''?'' NOT IN (''{0}'') RETURN", beauty_filter.map(m => { return vvs.replaceAll(m.base, "'", "''''") } ).join("'',''") )
         : ""
 
     return [

@@ -26,8 +26,6 @@ console.log(script_create_or_alter_table)
 <dt><a href="#type_sql">type_sql</a></dt>
 <dd><p>MS SQL datatype params</p>
 </dd>
-<dt><a href="#type_sql_object_name">type_sql_object_name</a></dt>
-<dd></dd>
 </dl>
 
 <a name="sqltype"></a>
@@ -73,16 +71,4 @@ MS SQL datatype params
 | xsdtype | <code>&#x27;xs:integer&#x27;</code> \| <code>&#x27;xs:decimal&#x27;</code> \| <code>&#x27;xs:boolean&#x27;</code> \| <code>&#x27;xs:date&#x27;</code> \| <code>&#x27;xs:dateTime&#x27;</code> \| <code>&#x27;xs:time&#x27;</code> \| <code>&#x27;xs:string&#x27;</code> | 
 | bytes_on_char | <code>number</code> | 
 | type | [<code>sqltype</code>](#sqltype) | 
-
-<a name="type_sql_object_name"></a>
-
-## type\_sql\_object\_name
-**Kind**: global typedef  
-**Properties**
-
-| Name | Type |
-| --- | --- |
-| base | <code>string</code> | 
-| schema | <code>string</code> | 
-| table | <code>string</code> | 
 

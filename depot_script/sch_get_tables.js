@@ -37,20 +37,5 @@ function go (filter, allow_size) {
         return vvs.format(query_per_database, [m.query_dbname, m.query_db, vvs.isEmptyString(m.query_filter) ? "" : "".concat("WHERE ", m.query_filter)])
     }).join(os.EOL.concat('UNION ALL', os.EOL))
 
-    // beauty_filter.forEach(base => {
-    //     let where = []
-    //     base.child.forEach(child => {
-    //         if (vvs.isEmptyString())
-    //         where.push(vvs)
-    //     })
-        
-    // })
 
-    // if (beauty_filter.bases.length > 0) {
-    //     return beauty_filter.bases.map(m => {
-    //         return vvs.format(query_per_database, ["'".concat(vvs.replaceAll(m, "'", "''"), "'"), "[".concat(m, "].") ])
-    //     }).join(os.EOL.concat('UNION ALL', os.EOL))
-    // } else {
-    //     return vvs.format(query_per_database, ['DB_NAME()', ''])
-    // }
 }

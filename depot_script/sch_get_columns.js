@@ -7,12 +7,12 @@ exports.go = go
 
 /**
  * get column list
- * @param {s.type_filter} [filter]
+ * @param {s.type_sql_object_name[]} [filter]
  * @returns {string}
  */
 function go (filter) {
 
-    let beauty_filter = s.beautify_filter(filter)
+    let beauty_filter = s.beautify_filter(filter, 'c.[TABLE_SCHEMA]', 'c.[TABLE_NAME]')
 
     let query_per_database = [
         "SELECT",
@@ -44,16 +44,10 @@ function go (filter) {
         "    SELECT OBJECT_NAME(Object_id) [TABLE], OBJECT_SCHEMA_NAME(Object_id) [SCHEMA], [name], [seed_value], [increment_value], [last_value]",
         "    FROM {1}sys.identity_columns",
         ") idc ON idc.[TABLE] = c.[TABLE_NAME] AND idc.[SCHEMA] = c.[TABLE_SCHEMA] AND idc.[name] = c.[COLUMN_NAME]",
-        "WHERE 1 = 1",
-        beauty_filter.schemas.length > 0 ? vvs.format("  AND c.[TABLE_SCHEMA] IN ('{0}')", beauty_filter.schemas.map(m => { return vvs.replaceAll(m, "'", "''")}).join("','") ) : "",
-        beauty_filter.tables.length > 0 ? vvs.format("  AND c.[TABLE_NAME] IN ('{0}')", beauty_filter.tables.map(m => { return vvs.replaceAll(m, "'", "''")}).join("','") ) : "",
+        "{2}",
     ].filter(f => !vvs.isEmptyString(f)).join(os.EOL)
 
-    if (beauty_filter.bases.length > 0) {
-        return beauty_filter.bases.map(m => {
-            return vvs.format(query_per_database, ["'".concat(vvs.replaceAll(m, "'", "''"), "'"), "[".concat(m, "].") ])
-        }).join(os.EOL.concat('UNION ALL', os.EOL))
-    } else {
-        return vvs.format(query_per_database, ['DB_NAME()', ''])
-    }
+    return beauty_filter.map(m => {
+        return vvs.format(query_per_database, [m.query_dbname, m.query_db, vvs.isEmptyString(m.query_filter) ? "" : "".concat("WHERE ", m.query_filter)])
+    }).join(os.EOL.concat('UNION ALL', os.EOL))
 }

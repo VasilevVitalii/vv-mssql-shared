@@ -7,12 +7,13 @@ exports.go = go
 
 /**
  * get column list
- * @param {s.type_filter} [filter]
+ * @param {s.type_sql_object_name[]} [filter]
  * @returns {string}
  */
 function go (filter) {
 
-    let beauty_filter = s.beautify_filter(filter)
+    let beauty_filter_fk = s.beautify_filter(filter, 'fk_schema.name', 'fk_tab.name')
+    let beauty_filter_pk = s.beautify_filter(filter, 'pk_schema.name', 'pk_tab.name')
 
     let query_per_database = [
         "SELECT",
@@ -35,16 +36,16 @@ function go (filter) {
         "JOIN {1}sys.foreign_key_columns fk_cols ON fk_cols.constraint_object_id = fk.object_id",
         "JOIN {1}sys.columns fk_col ON fk_col.column_id = fk_cols.parent_column_id AND fk_col.object_id = fk_tab.object_id",
         "JOIN {1}sys.columns pk_col ON pk_col.column_id = fk_cols.referenced_column_id AND pk_col.object_id = pk_tab.object_id",
-        "WHERE 1 = 1",
-        beauty_filter.schemas.length > 0 ? vvs.format("  AND (fk_schema.name IN ('{0}') OR pk_schema.name IN ('{0}'))", beauty_filter.schemas.map(m => { return vvs.replaceAll(m, "'", "''")}).join("','") ) : "",
-        beauty_filter.tables.length > 0 ? vvs.format("  AND (fk_tab.name IN ('{0}') OR pk_tab.name IN ('{0}'))", beauty_filter.tables.map(m => { return vvs.replaceAll(m, "'", "''")}).join("','") ) : "",
+        "{2}",
     ].filter(f => !vvs.isEmptyString(f)).join(os.EOL)
 
-    if (beauty_filter.bases.length > 0) {
-        return beauty_filter.bases.map(m => {
-            return vvs.format(query_per_database, ["'".concat(vvs.replaceAll(m, "'", "''"), "'"), "[".concat(m, "].") ])
-        }).join(os.EOL.concat('UNION ALL', os.EOL))
-    } else {
-        return vvs.format(query_per_database, ['DB_NAME()', ''])
-    }
+    beauty_filter_fk.filter(f => !vvs.isEmptyString(f.query_filter)).forEach(item => {
+        let fnd = beauty_filter_pk.find(f => f.base === item.base)
+        if (vvs.isEmpty(fnd) || vvs.isEmptyString(fnd.query_filter)) return
+        item.query_filter = item.query_filter.concat(os.EOL, '   OR ', fnd.query_filter)
+    })
+
+    return beauty_filter_fk.map(m => {
+        return vvs.format(query_per_database, [m.query_dbname, m.query_db, vvs.isEmptyString(m.query_filter) ? "" : "".concat("WHERE ", m.query_filter)])
+    }).join(os.EOL.concat('UNION ALL', os.EOL))
 }

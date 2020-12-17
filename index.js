@@ -20,7 +20,8 @@ let s = require('./shared.js')
  * @property {number} [precision]
  * @property {number} [scale]
  * @property {boolean} [nullable]
- * @property {boolean} [identity]
+ * @property {number} [identity_seed]
+ * @property {number} [identity_increment]
  * @property {number} [pk_position]
  * @property {string} [description]
  */

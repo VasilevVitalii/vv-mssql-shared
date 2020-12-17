@@ -56,7 +56,8 @@ MS SQL tables column
 | [precision] | <code>number</code> | 
 | [scale] | <code>number</code> | 
 | [nullable] | <code>boolean</code> | 
-| [identity] | <code>boolean</code> | 
+| [identity_seed] | <code>number</code> | 
+| [identity_increment] | <code>number</code> | 
 | [pk_position] | <code>number</code> | 
 | [description] | <code>string</code> | 
 

@@ -100,8 +100,8 @@ function query_column(column) {
     }
 
     let identity = ''
-    if (column.identity === true) {
-        identity = ' IDENTITY(1,1)'
+    if (!vvs.isEmpty(column.identity_seed) && !vvs.isEmpty(column.identity_increment)) {
+        identity = vvs.format(' IDENTITY({0},{1})', [column.identity_seed, column.identity_increment])
     }
 
     return vvs.format('[{0}] {1}{2}{3}{4}', [

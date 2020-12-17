@@ -2,8 +2,8 @@
 const vvs = require('vv-shared')
 const os = require('os')
 
-exports.quote = quote
-exports.tables = tables
+//exports.quote = quote
+//exports.tables = tables
 exports.beautify_filter = beautify_filter
 
 /**
@@ -28,55 +28,55 @@ exports.beautify_filter = beautify_filter
  * @property {string} table
  */
 
-/**
- * @param {string} val
- * @param {boolean} [no_bracket]
- */
-function quote(val, no_bracket) {
-    if (vvs.isEmpty(val)) return 'NULL'
-    if (no_bracket === true) {
-        return vvs.replaceAll(vvs.border_del(vvs.toString(val, ''),'[',']'), "'", "''")
-    }
-    return vvs.replaceAll(vvs.toString(val, ''), "'", "''")
-}
+// /**
+//  * @param {string} val
+//  * @param {boolean} [no_bracket]
+//  */
+// function quote(val, no_bracket) {
+//     if (vvs.isEmpty(val)) return 'NULL'
+//     if (no_bracket === true) {
+//         return vvs.replaceAll(vvs.border_del(vvs.toString(val, ''),'[',']'), "'", "''")
+//     }
+//     return vvs.replaceAll(vvs.toString(val, ''), "'", "''")
+// }
 
 
-/**
- * @typedef tables_result
- * @property {type_sql_object_name[]} tables
- * @property {string[]} databases
- */
-/**
- * @param {type_sql_object_name[]} tables
- * @returns {tables_result}
- */
-function tables(tables) {
+// /**
+//  * @typedef tables_result
+//  * @property {type_sql_object_name[]} tables
+//  * @property {string[]} databases
+//  */
+// /**
+//  * @param {type_sql_object_name[]} tables
+//  * @returns {tables_result}
+//  */
+// function tables(tables) {
 
-    let tables_beauty = Array.isArray(tables) ? tables.map(m => { return {
-        base: vvs.border_del(vvs.toString(m.base, '').trim(), '[', ']').toLowerCase(),
-        schema: vvs.border_del(vvs.toString(m.schema, '').trim(), '[', ']').toLowerCase(),
-        table: vvs.border_del(vvs.toString(m.table, '').trim(), '[', ']').toLowerCase()
-    }}) : []
+//     let tables_beauty = Array.isArray(tables) ? tables.map(m => { return {
+//         base: vvs.border_del(vvs.toString(m.base, '').trim(), '[', ']').toLowerCase(),
+//         schema: vvs.border_del(vvs.toString(m.schema, '').trim(), '[', ']').toLowerCase(),
+//         table: vvs.border_del(vvs.toString(m.table, '').trim(), '[', ']').toLowerCase()
+//     }}) : []
 
-    /** @type {type_sql_object_name[]} */
-    let tables_beauty_one = []
-    tables_beauty.forEach(table => {
-        if (tables_beauty_one.some(f => vvs.equal(f.base, table.base) && vvs.equal(f.schema, table.schema) && vvs.equal(f.table, table.table))) return
-        tables_beauty_one.push(table)
-    })
+//     /** @type {type_sql_object_name[]} */
+//     let tables_beauty_one = []
+//     tables_beauty.forEach(table => {
+//         if (tables_beauty_one.some(f => vvs.equal(f.base, table.base) && vvs.equal(f.schema, table.schema) && vvs.equal(f.table, table.table))) return
+//         tables_beauty_one.push(table)
+//     })
 
-    /** @type {string[]} */
-    let databases = []
-    tables_beauty_one.forEach(table => {
-        if (databases.some(f => vvs.equal(f, table.base))) return
-        databases.push(table.base)
-    })
+//     /** @type {string[]} */
+//     let databases = []
+//     tables_beauty_one.forEach(table => {
+//         if (databases.some(f => vvs.equal(f, table.base))) return
+//         databases.push(table.base)
+//     })
 
-    return {
-        tables: tables_beauty,
-        databases: databases
-    }
-}
+//     return {
+//         tables: tables_beauty,
+//         databases: databases
+//     }
+// }
 
 /**
  * @param {type_sql_object_name[]} filter

@@ -1,8 +1,14 @@
 //@ts-check
 
+let s = require('./shared.js')
+
 /**
  * MS SQL datatype
  * @typedef {'bigint'|'bit'|'decimal'|'int'|'money'|'numeric'|'smallint'|'smallmoney'|'tinyint'|'float'|'real'|'date'|'datetime2'|'datetime'|'datetimeoffset'|'smalldatetime'|'time'|'char'|'text'|'varchar'|'sysname'|'nchar'|'ntext'|'nvarchar'|'binary'|'image'|'varbinary'|'hierarchyid'|'sql_variant'|'xml'|'uniqueidentifier'|'timestamp'|'geometry'|'geography'} sqltype
+ */
+
+/**
+ * @typedef {s.type_sql_object_name} type_sql_object_name
  */
 
 /**

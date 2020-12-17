@@ -20,6 +20,8 @@ console.log(script_create_or_alter_table)
 <dt><a href="#sqltype">sqltype</a> : <code>&#x27;bigint&#x27;</code> | <code>&#x27;bit&#x27;</code> | <code>&#x27;decimal&#x27;</code> | <code>&#x27;int&#x27;</code> | <code>&#x27;money&#x27;</code> | <code>&#x27;numeric&#x27;</code> | <code>&#x27;smallint&#x27;</code> | <code>&#x27;smallmoney&#x27;</code> | <code>&#x27;tinyint&#x27;</code> | <code>&#x27;float&#x27;</code> | <code>&#x27;real&#x27;</code> | <code>&#x27;date&#x27;</code> | <code>&#x27;datetime2&#x27;</code> | <code>&#x27;datetime&#x27;</code> | <code>&#x27;datetimeoffset&#x27;</code> | <code>&#x27;smalldatetime&#x27;</code> | <code>&#x27;time&#x27;</code> | <code>&#x27;char&#x27;</code> | <code>&#x27;text&#x27;</code> | <code>&#x27;varchar&#x27;</code> | <code>&#x27;sysname&#x27;</code> | <code>&#x27;nchar&#x27;</code> | <code>&#x27;ntext&#x27;</code> | <code>&#x27;nvarchar&#x27;</code> | <code>&#x27;binary&#x27;</code> | <code>&#x27;image&#x27;</code> | <code>&#x27;varbinary&#x27;</code> | <code>&#x27;hierarchyid&#x27;</code> | <code>&#x27;sql_variant&#x27;</code> | <code>&#x27;xml&#x27;</code> | <code>&#x27;uniqueidentifier&#x27;</code> | <code>&#x27;timestamp&#x27;</code> | <code>&#x27;geometry&#x27;</code> | <code>&#x27;geography&#x27;</code></dt>
 <dd><p>MS SQL datatype</p>
 </dd>
+<dt><a href="#type_sql_object_name">type_sql_object_name</a> : <code>s.type_sql_object_name</code></dt>
+<dd></dd>
 <dt><a href="#type_column">type_column</a></dt>
 <dd><p>MS SQL tables column</p>
 </dd>
@@ -33,6 +35,10 @@ console.log(script_create_or_alter_table)
 ## sqltype : <code>&#x27;bigint&#x27;</code> \| <code>&#x27;bit&#x27;</code> \| <code>&#x27;decimal&#x27;</code> \| <code>&#x27;int&#x27;</code> \| <code>&#x27;money&#x27;</code> \| <code>&#x27;numeric&#x27;</code> \| <code>&#x27;smallint&#x27;</code> \| <code>&#x27;smallmoney&#x27;</code> \| <code>&#x27;tinyint&#x27;</code> \| <code>&#x27;float&#x27;</code> \| <code>&#x27;real&#x27;</code> \| <code>&#x27;date&#x27;</code> \| <code>&#x27;datetime2&#x27;</code> \| <code>&#x27;datetime&#x27;</code> \| <code>&#x27;datetimeoffset&#x27;</code> \| <code>&#x27;smalldatetime&#x27;</code> \| <code>&#x27;time&#x27;</code> \| <code>&#x27;char&#x27;</code> \| <code>&#x27;text&#x27;</code> \| <code>&#x27;varchar&#x27;</code> \| <code>&#x27;sysname&#x27;</code> \| <code>&#x27;nchar&#x27;</code> \| <code>&#x27;ntext&#x27;</code> \| <code>&#x27;nvarchar&#x27;</code> \| <code>&#x27;binary&#x27;</code> \| <code>&#x27;image&#x27;</code> \| <code>&#x27;varbinary&#x27;</code> \| <code>&#x27;hierarchyid&#x27;</code> \| <code>&#x27;sql\_variant&#x27;</code> \| <code>&#x27;xml&#x27;</code> \| <code>&#x27;uniqueidentifier&#x27;</code> \| <code>&#x27;timestamp&#x27;</code> \| <code>&#x27;geometry&#x27;</code> \| <code>&#x27;geography&#x27;</code>
 MS SQL datatype
 
+**Kind**: global typedef  
+<a name="type_sql_object_name"></a>
+
+## type\_sql\_object\_name : <code>s.type\_sql\_object\_name</code>
 **Kind**: global typedef  
 <a name="type_column"></a>
 

@@ -1,7 +1,7 @@
 //@ts-check
 const vvs = require('vv-shared')
 const os = require('os')
-const quote = require('../shared.js').quote
+const s = require('../shared.js')
 
 exports.go = go
 
@@ -21,7 +21,7 @@ exports.go = go
  * @return {string}
  */
 function go (child_schema, child_table, parent_schema, parent_table, column_list, rule_update, rule_delete) {
-    let column_list_query = column_list.map((m, index) => { return "SELECT '".concat(quote(m.child_column,true), "' c, '", quote(m.parent_column,true) , "' p") }).join(" UNION ALL")
+    let column_list_query = column_list.map((m, index) => { return "SELECT '".concat(s.quote(m.child_column,true), "' c, '", s.quote(m.parent_column,true) , "' p") }).join(" UNION ALL")
 
     let query = [
         "IF EXISTS (",
@@ -38,8 +38,8 @@ function go (child_schema, child_table, parent_schema, parent_table, column_list
         ") BEGIN",
         "   EXEC ('",
         "       ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [FK_{0}_{1}_{2}_{3}]",
-        "       FOREIGN KEY ([".concat(column_list.map(m => { return quote(m.child_column,true) }).join("], ["), "])" ),
-        "       REFERENCES [{2}].[{3}] ([".concat(column_list.map(m => { return quote(m.parent_column,true) }).join("], ["), "])" ),
+        "       FOREIGN KEY ([".concat(column_list.map(m => { return s.quote(m.child_column,true) }).join("], ["), "])" ),
+        "       REFERENCES [{2}].[{3}] ([".concat(column_list.map(m => { return s.quote(m.parent_column,true) }).join("], ["), "])" ),
         "       ON UPDATE {4}",
         "       ON DELETE {5}",
         "   ')",
@@ -47,10 +47,10 @@ function go (child_schema, child_table, parent_schema, parent_table, column_list
     ]
 
     return vvs.format(query.join(os.EOL), [
-        quote(child_schema, true),
-        quote(child_table, true),
-        quote(parent_schema, true),
-        quote(parent_table, true),
+        s.quote(child_schema, true),
+        s.quote(child_table, true),
+        s.quote(parent_schema, true),
+        s.quote(parent_table, true),
         vvs.replaceAll(rule_update, "_", " ").toUpperCase(),
         vvs.replaceAll(rule_delete, "_", " ").toUpperCase()
     ])

@@ -1,7 +1,7 @@
 //@ts-check
 const vvs = require('vv-shared')
 const os = require('os')
-const quote = require('../shared.js').quote
+const s = require('../shared.js')
 
 exports.go = go
 
@@ -15,11 +15,11 @@ exports.go = go
  */
 function go (schema, table, column, description) {
     if (vvs.isEmptyString(schema)) return ''
-    schema = quote(schema, true)
+    schema = s.quote(schema, true)
 
-    if (!vvs.isEmptyString(table)) table = quote(table, true)
-    if (!vvs.isEmptyString(column)) column = quote(column, true)
-    if (!vvs.isEmptyString(description)) description = quote(description, true)
+    if (!vvs.isEmptyString(table)) table = s.quote(table, true)
+    if (!vvs.isEmptyString(column)) column = s.quote(column, true)
+    if (!vvs.isEmptyString(description)) description = s.quote(description, true)
 
     /** @type {'schema'|'table'|'column'} */
     let point = undefined

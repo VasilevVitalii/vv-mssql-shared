@@ -2,7 +2,7 @@
 const vvs = require('vv-shared')
 const os = require('os')
 
-//exports.quote = quote
+exports.quote = quote
 //exports.tables = tables
 exports.beautify_filter = beautify_filter
 
@@ -28,17 +28,17 @@ exports.beautify_filter = beautify_filter
  * @property {string} table
  */
 
-// /**
-//  * @param {string} val
-//  * @param {boolean} [no_bracket]
-//  */
-// function quote(val, no_bracket) {
-//     if (vvs.isEmpty(val)) return 'NULL'
-//     if (no_bracket === true) {
-//         return vvs.replaceAll(vvs.border_del(vvs.toString(val, ''),'[',']'), "'", "''")
-//     }
-//     return vvs.replaceAll(vvs.toString(val, ''), "'", "''")
-// }
+/**
+ * @param {string} val
+ * @param {boolean} [no_bracket]
+ */
+function quote(val, no_bracket) {
+    if (vvs.isEmpty(val)) return 'NULL'
+    if (no_bracket === true) {
+        return vvs.replaceAll(vvs.border_del(vvs.toString(val, ''),'[',']'), "'", "''")
+    }
+    return vvs.replaceAll(vvs.toString(val, ''), "'", "''")
+}
 
 
 // /**

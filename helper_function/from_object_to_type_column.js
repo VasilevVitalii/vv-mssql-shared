@@ -59,6 +59,14 @@ function go (object, property_name_prefix) {
     let identity_seed = vvs.toInt(vvs.findPropertyValueInObject(object, prop))
     prop = prefix.concat('identity_increment')
     let identity_increment = vvs.toInt(vvs.findPropertyValueInObject(object, prop))
+    if (vvs.isEmpty(identity_seed) && vvs.isEmpty(identity_increment)) {
+        prop = prefix.concat('identity')
+        let identity = vvs.toBool(vvs.findPropertyValueInObject(object, prop), false)
+        if (identity === true) {
+            identity_seed = 1
+            identity_increment = 1
+        }
+    }
     if (vvs.isEmpty(identity_seed) && !vvs.isEmpty(identity_increment)) {
         throw new Error (vvs.format("can't convert object to sql type column - column \"{0}\" with type \"{1}\" contains identity_increment but does not contain identity_seed", [name, type.type]))
     }
@@ -68,6 +76,7 @@ function go (object, property_name_prefix) {
     if (!vvs.isEmpty(identity_seed) && type.precision === 'deny') {
         throw new Error (vvs.format("can't convert object to sql type column - column \"{0}\" with type \"{1}\" can't be identity", [name, type.type]))
     }
+
 
     prop = prefix.concat('nullable')
     let nullable = vvs.toBool(vvs.findPropertyValueInObject(object, prop), true)

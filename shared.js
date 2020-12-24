@@ -10,7 +10,7 @@ exports.beautify_filter = beautify_filter
  * @typedef type_sql_object_name
  * @property {string} [base]
  * @property {string} [schema]
- * @property {string} [table]
+ * @property {string} [object]
  */
 
 /**
@@ -91,7 +91,7 @@ function beautify_filter(filter, shema_field_name, table_field_name) {
     filter.forEach(item => {
         let base = vvs.border_del(vvs.toString(item.base, '').toLowerCase(), '[', ']')
         let schema = vvs.border_del(vvs.toString(item.schema, '').toLowerCase(), '[', ']')
-        let table = vvs.border_del(vvs.toString(item.table, '').toLowerCase(), '[', ']')
+        let table = vvs.border_del(vvs.toString(item.object, '').toLowerCase(), '[', ']')
 
         let fnd = res.find(f => f.base === base)
         if (vvs.isEmpty(fnd)) {

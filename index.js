@@ -57,3 +57,7 @@ exports.depot_sch_get_tables = require('./depot_script/sch_get_tables.js').go
 exports.depot_sch_get_views = require('./depot_script/sch_get_views.js').go
 exports.depot_sch_get_columns = require('./depot_script/sch_get_columns.js').go
 exports.depot_sch_get_foreign = require('./depot_script/sch_get_foreign.js').go
+exports.depot_sch_get_procedures = require('./depot_script/sch_get_procedures.js').go
+exports.depot_sch_get_procedure_params = require('./depot_script/sch_get_procedure_params.js').go
+
+

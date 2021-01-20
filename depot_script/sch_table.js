@@ -73,7 +73,10 @@ function go (schema, name, description, column_list, exist_unknown_field) {
                                 "' AND IS_NULLABLE = '", (m.nullable === true ? 'YES' : 'NO'),
                                 "' AND CHARACTER_MAXIMUM_LENGTH ", (vvs.isEmpty(m.len_chars) ? 'IS NULL' : "= ".concat((m.len_chars === 'max' ? "-1" : m.len_chars.toString()))),
                                 " AND NUMERIC_PRECISION ", vvs.isEmpty(m.precision) ? "IS NULL" : "= ".concat(m.precision.toString()),
-                                " AND NUMERIC_SCALE ", vvs.isEmpty(m.scale) ? "IS NULL" : "= ".concat(m.scale.toString()), ")"),
+                                " AND NUMERIC_SCALE ", vvs.isEmpty(m.scale) ? "IS NULL" : "= ".concat(m.scale.toString()),
+                                vvs.isEmptyString(m.collate) ? '' : " AND COLLATION_NAME = '".concat(m.collate, "'"),
+                                ")",
+                                ),
             "    BEGIN",
             "        EXEC ('ALTER TABLE [{0}].[{1}] ALTER COLUMN ".concat(query_column(m), "')"),
             "    END"
@@ -104,12 +107,13 @@ function query_column(column) {
         identity = vvs.format(' IDENTITY({0},{1})', [column.identity_seed, column.identity_increment])
     }
 
-    return vvs.format('[{0}] {1}{2}{3}{4}', [
+    return vvs.format('[{0}] {1}{2}{3}{4}{5}', [
         quote(column.name, true),
         column.type.toLocaleUpperCase(),
         len,
         identity,
-        (column.nullable === true ? ' NULL' : ' NOT NULL')
+        (vvs.isEmptyString(column.collate) ? '' : ' COLLATE '.concat(column.collate)),
+        (column.nullable === true ? ' NULL' : ' NOT NULL'),
     ])
 }
 

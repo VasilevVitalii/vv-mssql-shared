@@ -60,6 +60,7 @@ MS SQL tables column
 | [identity_increment] | <code>number</code> | 
 | [pk_position] | <code>number</code> | 
 | [description] | <code>string</code> | 
+| [collate] | <code>string</code> | 
 
 <a name="type_sql"></a>
 

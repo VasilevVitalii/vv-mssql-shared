@@ -24,6 +24,7 @@ let s = require('./shared.js')
  * @property {number} [identity_increment]
  * @property {number} [pk_position]
  * @property {string} [description]
+ * @property {string} [collate]
  */
 
 /**

@@ -1,15 +1,15 @@
 {
   "name": "vv-mssql-shared",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "",
   "main": "index.js",
   "scripts": {
     "doc": "type .readme.md > readme.md && jsdoc2md index.js >> readme.md",
     "updatever": "npm version patch --no-git-tag-version",
-    "gitadd": "git add ./readme.md ./package.json ./package-lock.json",
+    "gitadd": "git add ./readme.md ./package.json ./package-lock.json ./dist/*",
     "build": "npx tsc"
   },
-  "pre-commit": "doc, updatever, gitadd",
+  "pre-commit": "build, doc, updatever, gitadd",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VasilevVitalii/vv-mssql-shared.git"

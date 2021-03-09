@@ -60,5 +60,7 @@ exports.depot_sch_get_columns = require('./depot_script/sch_get_columns.js').go
 exports.depot_sch_get_foreign = require('./depot_script/sch_get_foreign.js').go
 exports.depot_sch_get_procedures = require('./depot_script/sch_get_procedures.js').go
 exports.depot_sch_get_procedure_params = require('./depot_script/sch_get_procedure_params.js').go
-
-
+exports.depot_sch_get_function_scalar = require('./depot_script/sch_get_function_scalar.js').go
+exports.depot_sch_get_function_table = require('./depot_script/sch_get_function_table.js').go
+exports.depot_sch_get_function_params = require('./depot_script/sch_get_function_params.js').go
+exports.depot_sch_get_function_table_columns = require('./depot_script/sch_get_function_table_columns.js').go

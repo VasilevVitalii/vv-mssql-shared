@@ -6,7 +6,7 @@ const s = require('../shared')
 exports.go = go
 
 /**
- * get table list
+ * tables
  * @param {s.type_sql_object_name[]} [filter]
  * @param {boolean} [allow_size]
  * @returns {string}
@@ -35,9 +35,14 @@ function go (filter, allow_size) {
         allow_size === true ? "GROUP BY s.name, t.name, ipk.name, prop_table.[value], p.[rows]" : ""
     ].filter(f => !vvs.isEmptyString(f)).join(os.EOL)
 
-    return beauty_filter.map(m => {
+    let query = beauty_filter.map(m => {
         return vvs.format(query_per_database, [m.query_dbname, m.query_db, vvs.isEmptyString(m.query_filter) ? "" : "".concat("WHERE ", m.query_filter)])
-    }).join(os.EOL.concat('UNION ALL', os.EOL))
+    }).join(os.EOL.concat('UNION ALL', os.EOL, os.EOL))
 
-
+    return [
+        "SELECT * FROM (",
+        "",
+        query,
+        ") q ORDER BY [database_name], [schema_name], [table_name]"
+    ].join(os.EOL)
 }

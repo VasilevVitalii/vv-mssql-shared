@@ -6,7 +6,7 @@ const s = require('../shared')
 exports.go = go
 
 /**
- * get table list
+ * database list, include system
  * @param {string[]} [filter]
  * @param {boolean} [allow_size]
  * @returns {string}

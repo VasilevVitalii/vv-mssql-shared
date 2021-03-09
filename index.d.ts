@@ -18,6 +18,10 @@ export var depot_sch_get_columns: typeof import("./depot_script/sch_get_columns.
 export var depot_sch_get_foreign: typeof import("./depot_script/sch_get_foreign.js").go;
 export var depot_sch_get_procedures: typeof import("./depot_script/sch_get_procedures.js").go;
 export var depot_sch_get_procedure_params: typeof import("./depot_script/sch_get_procedure_params.js").go;
+export var depot_sch_get_function_scalar: typeof import("./depot_script/sch_get_function_scalar.js").go;
+export var depot_sch_get_function_table: typeof import("./depot_script/sch_get_function_table.js").go;
+export var depot_sch_get_function_params: typeof import("./depot_script/sch_get_function_params.js").go;
+export var depot_sch_get_function_table_columns: typeof import("./depot_script/sch_get_function_table_columns.js").go;
 /**
  * MS SQL datatype
  */

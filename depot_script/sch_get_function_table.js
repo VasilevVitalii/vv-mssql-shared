@@ -6,22 +6,24 @@ const s = require('../shared')
 exports.go = go
 
 /**
- * stored procedures
+ * table functions
  * @param {s.type_sql_object_name[]} [filter]
  * @returns {string}
  */
 function go (filter) {
-    let beauty_filter = s.beautify_filter(filter, 's.name', 'p.name')
+    let beauty_filter = s.beautify_filter(filter, 's.name', 'o.name')
 
     let query_per_database = [
         "SELECT",
         "    {0} [database_name]",
         "    ,s.name [schema_name]",
-        "    ,p.name [procedure_name]",
-        "    ,prop_proc.[value] [procedure_description]",
-        "FROM {1}sys.procedures p",
-        "LEFT JOIN {1}sys.schemas s ON p.schema_id = s.schema_id",
-        "OUTER APPLY {1}sys.fn_listextendedproperty('MS_Description', 'SCHEMA', s.name, 'PROCEDURE', p.name, null, null) prop_proc",
+        "    ,o.name [function_table_name]",
+        "    ,prop_func.[value] [function_table_description]",
+        "    ,CASE WHEN o.[type] = 'IF' THEN 1 ELSE 0 END [function_table_inline]",
+        "FROM {1}sys.objects o ",
+        "JOIN {1}sys.schemas s ON s.[schema_id] = o.[schema_id]",
+        "OUTER APPLY {1}sys.fn_listextendedproperty('MS_Description', 'SCHEMA', s.name, 'FUNCTION', o.name, null, null) prop_func",
+        "WHERE o.[type] IN ('IF','TF')",
         "{2}",
     ].filter(f => !vvs.isEmptyString(f)).join(os.EOL)
 
@@ -33,6 +35,6 @@ function go (filter) {
         "SELECT * FROM (",
         "",
         query,
-        ") q ORDER BY [database_name], [schema_name], [procedure_name]"
+        ") q ORDER BY [database_name], [schema_name], [function_table_name]"
     ].join(os.EOL)
 }

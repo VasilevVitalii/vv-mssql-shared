@@ -45,7 +45,15 @@ function go (filter) {
         item.query_filter = item.query_filter.concat(os.EOL, '   OR ', fnd.query_filter)
     })
 
-    return beauty_filter_fk.map(m => {
+    let query =   beauty_filter_fk.map(m => {
         return vvs.format(query_per_database, [m.query_dbname, m.query_db, vvs.isEmptyString(m.query_filter) ? "" : "".concat("WHERE ", m.query_filter)])
     }).join(os.EOL.concat('UNION ALL', os.EOL))
+
+    return [
+        "SELECT * FROM (",
+        "",
+        query,
+        ") q ORDER BY [database_name], [fk_name], [fk_position]"
+    ].join(os.EOL)
+
 }

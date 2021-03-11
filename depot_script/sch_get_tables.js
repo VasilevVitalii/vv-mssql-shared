@@ -43,6 +43,6 @@ function go (filter, allow_size) {
         "SELECT * FROM (",
         "",
         query,
-        ") q ORDER BY [database_name], [schema_name], [table_name]"
+        ") q WHERE [table_name] NOT LIKE '#%' ORDER BY [database_name], [schema_name], [table_name]"
     ].join(os.EOL)
 }

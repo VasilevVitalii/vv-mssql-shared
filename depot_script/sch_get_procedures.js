@@ -19,8 +19,8 @@ function go (filter) {
         "    ,s.name [schema_name]",
         "    ,p.name [procedure_name]",
         "    ,prop_proc.[value] [procedure_description]",
-        "FROM {1}sys.procedures p",
-        "LEFT JOIN {1}sys.schemas s ON p.schema_id = s.schema_id",
+        "FROM {1}sys.procedures p WITH (NOLOCK)",
+        "LEFT JOIN {1}sys.schemas s WITH (NOLOCK) ON p.schema_id = s.schema_id",
         "OUTER APPLY {1}sys.fn_listextendedproperty('MS_Description', 'SCHEMA', s.name, 'PROCEDURE', p.name, null, null) prop_proc",
         "{2}",
     ].filter(f => !vvs.isEmptyString(f)).join(os.EOL)

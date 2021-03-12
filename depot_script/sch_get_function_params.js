@@ -24,9 +24,9 @@ function go (filter) {
         "    ,p.CHARACTER_MAXIMUM_LENGTH [function_param_len_chars]",
         "    ,p.NUMERIC_PRECISION [function_param_precision]",
         "    ,p.NUMERIC_SCALE [function_param_scale]",
-        "FROM {1}sys.objects o ",
-        "JOIN {1}sys.schemas s ON s.[schema_id] = o.[schema_id]",
-        "LEFT JOIN {1}INFORMATION_SCHEMA.PARAMETERS p ON p.SPECIFIC_SCHEMA = s.name AND p.SPECIFIC_NAME = o.name AND p.IS_RESULT = 'NO'",
+        "FROM {1}sys.objects o WITH (NOLOCK)",
+        "JOIN {1}sys.schemas s WITH (NOLOCK) ON s.[schema_id] = o.[schema_id]",
+        "LEFT JOIN {1}INFORMATION_SCHEMA.PARAMETERS p WITH (NOLOCK) ON p.SPECIFIC_SCHEMA = s.name AND p.SPECIFIC_NAME = o.name AND p.IS_RESULT = 'NO'",
         "WHERE o.[type] IN ('FN','IF','TF')",
         "{2}",
     ].filter(f => !vvs.isEmptyString(f)).join(os.EOL)

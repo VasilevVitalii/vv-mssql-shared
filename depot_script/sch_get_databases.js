@@ -46,7 +46,7 @@ function go (filter, allow_size) {
             "        SUM(CASE WHEN f.type_desc = 'LOG' THEN f.[size] ELSE 0 END) size_log,",
             "        SUM(CASE WHEN f.type_desc = 'ROWS' THEN f.[size] ELSE 0 END) size_row",
             "    FROM #databases r",
-            "    JOIN sys.master_files f ON f.database_id = DB_ID(r.database_name)",
+            "    JOIN sys.master_files f WITH (NOLOCK) ON f.database_id = DB_ID(r.database_name)",
             "    GROUP BY r.database_name",
             ") UPDATE r SET r.log_size_kb = s.size_log * 8, r.raw_size_kb = s.size_row * 8",
             "FROM #databases r ",

@@ -27,9 +27,9 @@ function go (filter) {
         "	,p2.CHARACTER_MAXIMUM_LENGTH [procedure_param_len_chars]",
         "	,p2.NUMERIC_PRECISION [procedure_param_precision]",
         "	,p2.NUMERIC_SCALE [procedure_param_scale]",
-        "FROM {1}sys.procedures p",
-        "JOIN {1}sys.schemas s ON p.schema_id = s.schema_id",
-        "JOIN {1}INFORMATION_SCHEMA.PARAMETERS p2 ON p2.SPECIFIC_SCHEMA = s.name AND p2.SPECIFIC_NAME = p.name",
+        "FROM {1}sys.procedures p WITH (NOLOCK)",
+        "JOIN {1}sys.schemas s WITH (NOLOCK) ON p.schema_id = s.schema_id",
+        "JOIN {1}INFORMATION_SCHEMA.PARAMETERS p2 WITH (NOLOCK) ON p2.SPECIFIC_SCHEMA = s.name AND p2.SPECIFIC_NAME = p.name",
         "{2}"
     ].filter(f => !vvs.isEmptyString(f)).join(os.EOL)
 

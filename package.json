@@ -1,6 +1,6 @@
 {
   "name": "vv-mssql-shared",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,6 @@
     "gitadd": "git add ./readme.md ./package.json ./package-lock.json",
     "build": "del *.d.ts && npx tsc"
   },
-  "pre-commit": "build, doc, updatever, gitadd",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VasilevVitalii/vv-mssql-shared.git"

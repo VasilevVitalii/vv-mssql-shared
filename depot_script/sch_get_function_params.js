@@ -11,7 +11,7 @@ exports.go = go
  * @returns {string}
  */
 function go (filter) {
-    let beauty_filter = s.beautify_filter(filter, 's.name', 'p.name')
+    let beauty_filter = s.beautify_filter(filter, 's.name', 'o.name')
 
     let query_per_database = [
         "SELECT",
@@ -32,7 +32,7 @@ function go (filter) {
     ].filter(f => !vvs.isEmptyString(f)).join(os.EOL)
 
     let query =  beauty_filter.map(m => {
-        return vvs.format(query_per_database, [m.query_dbname, m.query_db, vvs.isEmptyString(m.query_filter) ? "" : "".concat("WHERE ", m.query_filter)])
+        return vvs.format(query_per_database, [m.query_dbname, m.query_db, vvs.isEmptyString(m.query_filter) ? "" : "".concat("AND ", m.query_filter)])
     }).join(os.EOL.concat('UNION ALL', os.EOL))
 
     return [

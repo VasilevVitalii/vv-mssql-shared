@@ -25,12 +25,8 @@ export var depot_sch_get_function_table_columns: typeof import("./depot_script/s
 /**
  * MS SQL datatype
  */
-export type sqltype = "bigint" | "time" | "image" | "text" | "decimal" | "bit" | "int" | "money" | "numeric" | "smallint" | "smallmoney" | "tinyint" | "float" | "real" | "date" | "datetime2" | "datetime" | "datetimeoffset" | "smalldatetime" | "char" | "varchar" | "sysname" | "nchar" | "ntext" | "nvarchar" | "binary" | "varbinary" | "hierarchyid" | "sql_variant" | "xml" | "uniqueidentifier" | "timestamp" | "geometry" | "geography";
-export type type_sql_object_name = {
-    base?: string;
-    schema?: string;
-    object?: string;
-};
+export type sqltype = 'bigint' | 'bit' | 'decimal' | 'int' | 'money' | 'numeric' | 'smallint' | 'smallmoney' | 'tinyint' | 'float' | 'real' | 'date' | 'datetime2' | 'datetime' | 'datetimeoffset' | 'smalldatetime' | 'time' | 'char' | 'text' | 'varchar' | 'sysname' | 'nchar' | 'ntext' | 'nvarchar' | 'binary' | 'image' | 'varbinary' | 'hierarchyid' | 'sql_variant' | 'xml' | 'uniqueidentifier' | 'timestamp' | 'geometry' | 'geography';
+export type type_sql_object_name = s.type_sql_object_name;
 /**
  * MS SQL tables column
  */
@@ -59,3 +55,4 @@ export type type_sql = {
     bytes_on_char: number;
     type: sqltype;
 };
+import s = require("./shared.js");

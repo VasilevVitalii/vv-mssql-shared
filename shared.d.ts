@@ -37,7 +37,7 @@ export type type_beauty_filter_child = {
  * @param {string} val
  * @param {boolean} [no_bracket]
  */
-export function quote(val: string, no_bracket?: boolean): any;
+export function quote(val: string, no_bracket?: boolean): string;
 /**
  * @param {type_sql_object_name[]} filter
  * @param {string} shema_field_name

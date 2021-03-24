@@ -18,7 +18,7 @@ function go (filter) {
         "    {0} [database_name]",
         "    ,s.name [schema_name]",
         "    ,o.name [function_scalar_name]",
-        "    ,prop_func.[value] [function_scalar_description]",
+        "    ,CONVERT(NVARCHAR(MAX),prop_func.[value]) [function_scalar_description]",
         "    ,p.DATA_TYPE [function_scalar_type]",
         "    ,p.CHARACTER_MAXIMUM_LENGTH [function_scalar_len_chars]",
         "    ,p.NUMERIC_PRECISION [function_scalar_precision]",

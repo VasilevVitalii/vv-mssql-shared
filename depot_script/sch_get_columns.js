@@ -20,7 +20,7 @@ function go (filter) {
         "    ,c.[TABLE_SCHEMA] [schema_name]",
         "    ,c.[TABLE_NAME] [table_name]",
         "    ,c.[COLUMN_NAME] [column_name]",
-        "    ,prop_column.[value] [column_description]",
+        "    ,CONVERT(NVARCHAR(MAX),prop_column.[value]) [column_description]",
         "    ,pk.[ORDINAL_POSITION] [column_pk_position]",
         "    ,c.[ORDINAL_POSITION] [column_position]",
         "    ,CASE WHEN c.[IS_NULLABLE] = 'YES' THEN 1 ELSE 0 END [column_nullable]",

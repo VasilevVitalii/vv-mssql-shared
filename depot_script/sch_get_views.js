@@ -19,7 +19,7 @@ function go (filter, allow_size) {
         "    {0} [database_name]",
         "    ,s.name [schema_name]",
         "    ,v.name [view_name]",
-        "    ,prop_table.[value] [view_description]",
+        "    ,CONVERT(NVARCHAR(MAX),prop_table.[value]) [view_description]",
         allow_size === true ? "    ,p.[rows] [view_size_rows]" : "",
         allow_size === true ? "    ,SUM(a.total_pages) * 8 [view_size_total_space_kb]" : "",
         allow_size === true ? "    ,SUM(a.used_pages) * 8 [view_size_used_space_kb]" : "",

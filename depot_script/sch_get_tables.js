@@ -20,7 +20,7 @@ function go (filter, allow_size) {
         "    ,s.name [schema_name]",
         "    ,t.name [table_name]",
         "    ,ipk.name [table_pk_name]",
-        "    ,prop_table.[value] [table_description]",
+        "    ,CONVERT(NVARCHAR(MAX),prop_table.[value]) [table_description]",
         allow_size === true ? "    ,MAX(p.[rows]) [table_size_rows]" : "",
         allow_size === true ? "    ,SUM(a.total_pages) * 8 [table_size_total_space_kb]" : "",
         allow_size === true ? "    ,SUM(a.used_pages) * 8 [table_size_used_space_kb]" : "",

@@ -18,7 +18,7 @@ function go (filter) {
         "    {0} [database_name]",
         "    ,s.name [schema_name]",
         "    ,o.name [function_table_name]",
-        "    ,prop_func.[value] [function_table_description]",
+        "    ,CONVERT(NVARCHAR(MAX),prop_func.[value]) [function_table_description]",
         "    ,CASE WHEN o.[type] = 'IF' THEN 1 ELSE 0 END [function_table_inline]",
         "FROM {1}sys.objects o WITH (NOLOCK)",
         "JOIN {1}sys.schemas s WITH (NOLOCK) ON s.[schema_id] = o.[schema_id]",

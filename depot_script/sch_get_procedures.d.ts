@@ -1,5 +1,5 @@
 /**
- * get table list
+ * stored procedures
  * @param {s.type_sql_object_name[]} [filter]
  * @returns {string}
  */

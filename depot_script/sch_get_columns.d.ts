@@ -1,5 +1,5 @@
 /**
- * get column list
+ * column list for tables and views
  * @param {s.type_sql_object_name[]} [filter]
  * @returns {string}
  */

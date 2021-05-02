@@ -1,5 +1,5 @@
 /**
- * get table list
+ * scalar functions with result
  * @param {s.type_sql_object_name[]} [filter]
  * @returns {string}
  */

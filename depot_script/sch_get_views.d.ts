@@ -1,5 +1,5 @@
 /**
- * get table list
+ * views
  * @param {s.type_sql_object_name[]} [filter]
  * @param {boolean} [allow_size]
  * @returns {string}

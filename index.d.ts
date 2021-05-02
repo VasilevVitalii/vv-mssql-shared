@@ -2,6 +2,7 @@ export var helper_get_types_sql: typeof import("./helper_function/get_types_sql.
 export var helper_get_declare: typeof import("./helper_function/get_declare.js").go;
 export var helper_format_declare: typeof import("./helper_function/format_declare.js").go;
 export var helper_js_to_sql: typeof import("./helper_function/js_to_sql.js").go;
+export var helper_js_to_xml: typeof import("./helper_function/js_to_xml.js").go;
 export var helper_from_object_to_type_column: typeof import("./helper_function/from_object_to_type_column.js").go;
 export var helper_parse_object_name: typeof import("./helper_function/parse_object_name.js").go;
 export var depot_server_info: typeof import("./depot_script/server_info.js").go;

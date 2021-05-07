@@ -35,7 +35,7 @@ function go (object, sql_type, empty_to_null) {
         let res = vvs.toString(object)
         if (!vvs.isEmpty(res)) {
             if (vvs.toBool(empty_to_null, true) === true && res.trim() === '') return 'NULL'
-            return "N'".concat(vvs.replaceAll(res,"'","''"), "'")
+            return "N'".concat(res.replace(/'/g, "''"), "'")
         }
 
     } else if (sql_type === 'char' || sql_type === 'sysname' || sql_type === 'varchar') {
@@ -43,7 +43,7 @@ function go (object, sql_type, empty_to_null) {
         let res = vvs.toString(object)
         if (!vvs.isEmpty(res)) {
             if (vvs.toBool(empty_to_null, true) === true && res.trim() === '') return 'NULL'
-            return "'".concat(vvs.replaceAll(res,"'","''"), "'")
+            return "'".concat(res.replace(/'/g, "''"), "'")
         }
 
     } else if (sql_type === 'bit') {
